@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charaset="utf-8">
+  <title>データの入力</title>
+  <style>
+    .input-container {
+      display: grid;
+      grid-template-rows: 200px 50px;
+      grid-template-columns: 300px 300px;
+      grid-template-areas:
+        "inputArea previewArea"
+        "buttonArea buttonArea";
+      grid-gap: 10px;
+    }
+    .inputArea {
+      grid-area: inputArea;
+      display: grid;
+    }
+    .previewArea {
+      grid-area: previewArea;
+      display: grid;
+    }
+    .buttonArea{
+      grid-area: buttonArea;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="input-container">
+      <form class="inputArea" action="">
+        <p>ユーザー登録</p>
+        <label for="">ニックネーム</label>
+        <!-- v-bindとv-onで書き換え -->
+        <input v-bind:value="nickName" v-on:input="nickName = $event.target.value" type="text">
+        <label for="">メールアドレス</label>
+        <input v-model="email" type="email">
+      </form>
+      <div class="previewArea">
+        <p>プレビュー</p>
+        <label for="">ニックネーム</label>
+        <input v-bind:value="nickName" type="text" readonly>
+        <label for="">メールアドレス</label>
+        <input v-bind:value="email" type="email" readonly>
+      </div>
+      <div class="buttonArea">
+        <button v-on:click="saveUser">ユーザーを登録する</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp(
+      // オプションオブジェクト
+      {
+        data: () => ({
+          users: [],
+          nickName: '',
+          email: '',
+        }),
+        methods: {
+          saveUser: function() {
+            let user = {
+              nickName: this.nickName,
+              email: this.email,
+            };
+            this.users.push(user);
+            alert('ニックネーム: ' + this.nickName + '、 メールアドレス: ' + this.email + 'で登録しました。');
+          }
+        }
+      }
+    )
+    app.mount('#app')
+  </script>
+</body>
+</html>
