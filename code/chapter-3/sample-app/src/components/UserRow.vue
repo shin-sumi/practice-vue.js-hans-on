@@ -30,7 +30,7 @@ export default defineComponent({
       required: true
     }
   },
-  setUp(props, context) {
+  setup(props, context) {
     const editable = ref(false);
     const editNickname = ref(null);
     const edit = () => {
