@@ -69,7 +69,7 @@ export default defineComponent({
       nicknameFilter: "",
       filteredUsers: computed(() => {
         return state.users.filter(user => {
-          user.nickname.includes(state.nicknameFilter);
+          return user.nickname.includes(state.nicknameFilter);
         });
       })
     });
