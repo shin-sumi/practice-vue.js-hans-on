@@ -84,7 +84,7 @@ export default defineComponent({
       alert(
         "ニックネーム: " +
           state.nickname +
-          "メールアドレス" +
+          "、メールアドレス: " +
           state.email +
           "で登録しました。"
       );
