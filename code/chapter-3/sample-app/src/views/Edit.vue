@@ -34,7 +34,7 @@
         </thead>
         <tbody>
           <tr
-            is="'user-row'"
+            is="user-row"
             v-for="(user, index) in filteredUsers"
             :key="index"
             :user="user"
