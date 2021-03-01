@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      <span if="!editable" @click="edit()">{{ user.nickname }}</span>
+      <span v-if="!editable" @click="edit()">{{ user.nickname }}</span>
       <input
         v-show="editable"
         ref="editNickname"
