@@ -75,10 +75,7 @@ export default defineComponent({
     });
 
     const saveUser = () => {
-      const user = {
-        nickname: state.nickname,
-        email: state.email
-      };
+      const user = new User(state.nickname, state.email);
       state.users.push(user);
 
       alert(
