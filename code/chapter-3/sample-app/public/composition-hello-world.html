@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <title>hello world</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ display }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp(
+        {
+          setup() {
+            const display = Vue.ref('Hello World!');
+
+            return {
+              display,
+            }
+          }
+        }
+      );
+      app.mount('#app');
+    </script>
+  </body>
+</html>
