@@ -14,36 +14,22 @@
 </template>
 
 <script>
-import { defineComponent, ref, nextTick } from '@vue/composition-api';
+import Vue from 'vue';
 
-export function User(nickname, email) {
-  this.nickname = nickname;
-  this.email = email;
-}
-
-export default defineComponent({
-  props: {
-    user: {
-      type: User,
-      required: true,
-    },
-  },
-  setup(props, context) {
-    const editable = ref(false);
-    const editNickname = ref(null);
-
-    const edit = () => {
-      editable.value = true;
-      nextTick(() => {
-        editNickname.value.focus();
-      });
-    };
-
+export default Vue.extend({
+  props: ['user'],
+  data: function() {
     return {
-      editable,
-      editNickname,
-      edit,
+      editable: false,
     };
+  },
+  methods: {
+    edit: function() {
+      this.editable = true;
+      this.$nextTick(() => {
+        this.$refs.editNickname.focus();
+      });
+    },
   },
 });
 </script>

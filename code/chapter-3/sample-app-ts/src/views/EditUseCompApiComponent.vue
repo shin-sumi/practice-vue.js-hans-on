@@ -48,47 +48,55 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import userRowComponent from '@/components/UserRow.vue';
-export default Vue.extend({
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  computed,
+} from '@vue/composition-api';
+import userRowComponent, { User } from '@/components/UserRowVerCompApi.vue';
+export default defineComponent({
   components: {
     'user-row': userRowComponent,
   },
-  data: () => ({
-    users: [],
-    nickname: '',
-    email: '',
-    nicknameFilter: '',
-  }),
-  computed: {
-    filteredUsers: function() {
-      return this.users.filter(user =>
-        user.nickname.includes(this.nicknameFilter),
-      );
-    },
-  },
-  methods: {
-    saveUser: function() {
-      const user = {
-        nickname: this.nickname,
-        email: this.email,
-      };
-      this.users.push(user);
+  setup() {
+    const state = reactive({
+      users: [],
+      nickname: '',
+      email: '',
+      nicknameFilter: '',
+      filteredUsers: computed(() => {
+        return state.users.filter(user =>
+          user.nickname.includes(state.nicknameFilter),
+        );
+      }),
+    });
+
+    const saveUser = () => {
+      const user = new User(state.nickname, state.email);
+      state.users.push(user);
       alert(
         'ニックネーム: ' +
-          this.nickname +
+          state.nickname +
           'メールアドレス: ' +
-          this.email +
+          state.email +
           'で登録しました。',
       );
-    },
-    displayUsers: function() {
-      let message = this.users.length + '人のユーザーが登録されています。';
-      for (const user of this.users) {
+    };
+
+    const displayUsers = () => {
+      let message = state.users.length + '人のユーザーが登録されています。';
+      for (const user of state.users) {
         message += '\n' + user.nickname;
       }
       alert(message);
-    },
+    };
+
+    return {
+      ...toRefs(state),
+      saveUser,
+      displayUsers,
+    };
   },
 });
 </script>
