@@ -47,50 +47,51 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue';
-import userRowComponent from '@/components/UserRow.vue';
-export default Vue.extend({
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import userRowComponent, { User } from '@/components/UserRow.vue';
+
+@Component({
   components: {
     'user-row': userRowComponent,
   },
-  data: () => ({
-    users: [],
-    nickname: '',
-    email: '',
-    nicknameFilter: '',
-  }),
-  computed: {
-    filteredUsers: function() {
-      return this.users.filter(user =>
-        user.nickname.includes(this.nicknameFilter),
-      );
-    },
-  },
-  methods: {
-    saveUser: function() {
-      const user = {
-        nickname: this.nickname,
-        email: this.email,
-      };
-      this.users.push(user);
-      alert(
-        'ニックネーム: ' +
-          this.nickname +
-          'メールアドレス: ' +
-          this.email +
-          'で登録しました。',
-      );
-    },
-    displayUsers: function() {
-      let message = this.users.length + '人のユーザーが登録されています。';
-      for (const user of this.users) {
-        message += '\n' + user.nickname;
-      }
-      alert(message);
-    },
-  },
-});
+})
+export default class EditComponent extends Vue {
+  private users: User[] = [];
+  private nickname = '';
+  private email = '';
+  private nicknameFilter = '';
+
+  private get filteredUsers() {
+    return this.users.filter(user =>
+      user.nickname.includes(this.nicknameFilter),
+    );
+  }
+
+  private saveUser() {
+    const user: User = {
+      nickname: this.nickname,
+      email: this.email,
+    };
+    this.users.push(user);
+
+    alert(
+      'ニックネーム: ' +
+        this.nickname +
+        '、 メールアドレス: ' +
+        this.email +
+        'で登録しました。',
+    );
+  }
+
+  private displayUsers() {
+    let message = this.users.length + '人のユーザーが登録されています。';
+    for (const user of this.users) {
+      message += '\n' + user.nickname;
+    }
+    alert(message);
+  }
+}
 </script>
 
 <style module lang="scss">
