@@ -69,6 +69,10 @@ export default class EditComponent extends Vue {
   }
 
   private saveUser() {
+    if (!this.nickname || !this.email) {
+      alert('ニックネームとメールアドレスを両方入力してください。');
+      return false;
+    }
     const user: User = {
       nickname: this.nickname,
       email: this.email,
