@@ -32,6 +32,15 @@ const userValidator = (user: User) => {
 export default class UserRowComponent extends Vue {
   @Prop({ required: true, validator: userValidator })
   private user!: User;
+
+  private editable = false;
+
+  private edit() {
+    this.editable = true;
+    this.$nextTick(() => {
+      (this.$refs.editNickname as HTMLFormElement).focus();
+    });
+  }
 }
 </script>
 
