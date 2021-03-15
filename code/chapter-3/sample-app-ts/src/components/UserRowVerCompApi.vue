@@ -13,29 +13,30 @@
   </tr>
 </template>
 
-<script>
-import { defineComponent, ref, nextTick } from '@vue/composition-api';
+<script lang="ts">
+import { defineComponent, ref, nextTick, PropType } from '@vue/composition-api';
 
-export function User(nickname, email) {
-  this.nickname = nickname;
-  this.email = email;
+export interface User {
+  nickname: string;
+  email: string;
 }
 
 export default defineComponent({
   props: {
     user: {
-      type: User,
+      type: Object as PropType<User>,
       required: true,
     },
   },
   setup(props, context) {
     const editable = ref(false);
-    const editNickname = ref(null);
+    const editNickname = ref<HTMLFormElement | null>(null);
 
     const edit = () => {
       editable.value = true;
       nextTick(() => {
-        editNickname.value.focus();
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        editNickname.value!.focus();
       });
     };
 

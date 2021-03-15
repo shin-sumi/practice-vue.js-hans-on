@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   defineComponent,
   reactive,
@@ -61,11 +61,11 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      users: [],
+      users: [] as User[],
       nickname: '',
       email: '',
       nicknameFilter: '',
-      filteredUsers: computed(() => {
+      filteredUsers: computed((): User[] => {
         return state.users.filter(user =>
           user.nickname.includes(state.nicknameFilter),
         );
@@ -73,7 +73,10 @@ export default defineComponent({
     });
 
     const saveUser = () => {
-      const user = new User(state.nickname, state.email);
+      const user: User = {
+        nickname: state.nickname,
+        email: state.email,
+      };
       state.users.push(user);
       alert(
         'ニックネーム: ' +
