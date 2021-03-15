@@ -48,54 +48,60 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import userRowComponent, { User } from '@/components/UserRow.vue';
-
-@Component({
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  computed,
+} from '@vue/composition-api';
+import userRowComponent, { User } from '@/components/UserRowVerCompApi.vue';
+export default defineComponent({
   components: {
     'user-row': userRowComponent,
   },
-})
-export default class EditComponent extends Vue {
-  private users: User[] = [];
-  private nickname = '';
-  private email = '';
-  private nicknameFilter = '';
+  setup() {
+    const state = reactive({
+      users: [] as User[],
+      nickname: '',
+      email: '',
+      nicknameFilter: '',
+      filteredUsers: computed((): User[] => {
+        return state.users.filter(user =>
+          user.nickname.includes(state.nicknameFilter),
+        );
+      }),
+    });
 
-  private get filteredUsers() {
-    return this.users.filter(user =>
-      user.nickname.includes(this.nicknameFilter),
-    );
-  }
-
-  private saveUser() {
-    if (!this.nickname || !this.email) {
-      alert('ニックネームとメールアドレスを両方入力してください。');
-      return false;
-    }
-    const user: User = {
-      nickname: this.nickname,
-      email: this.email,
+    const saveUser = () => {
+      const user: User = {
+        nickname: state.nickname,
+        email: state.email,
+      };
+      state.users.push(user);
+      alert(
+        'ニックネーム: ' +
+          state.nickname +
+          'メールアドレス: ' +
+          state.email +
+          'で登録しました。',
+      );
     };
-    this.users.push(user);
 
-    alert(
-      'ニックネーム: ' +
-        this.nickname +
-        '、 メールアドレス: ' +
-        this.email +
-        'で登録しました。',
-    );
-  }
+    const displayUsers = () => {
+      let message = state.users.length + '人のユーザーが登録されています。';
+      for (const user of state.users) {
+        message += '\n' + user.nickname;
+      }
+      alert(message);
+    };
 
-  private displayUsers() {
-    let message = this.users.length + '人のユーザーが登録されています。';
-    for (const user of this.users) {
-      message += '\n' + user.nickname;
-    }
-    alert(message);
-  }
-}
+    return {
+      ...toRefs(state),
+      saveUser,
+      displayUsers,
+    };
+  },
+});
 </script>
 
 <style module lang="scss">

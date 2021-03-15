@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import editComponent from '@/views/Edit.vue';
+import editComponentCompApi from '@/views/EditUseCompApiComponent.vue';
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
@@ -23,6 +24,11 @@ const routes: Array<RouteConfig> = [
     path: '/edit',
     name: 'Edit',
     component: editComponent,
+  },
+  {
+    path: '/edit-comp-api',
+    name: 'EditCompApi',
+    component: editComponentCompApi,
   },
 ];
 
