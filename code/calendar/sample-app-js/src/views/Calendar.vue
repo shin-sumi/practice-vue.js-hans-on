@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>ホーム</h1>
+    <h1>カレンダー</h1>
   </div>
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from '@/composition-api';
 
 export default defineComponent({});
 </script>
