@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@/composition-api';
+import { defineComponent } from '@vue/composition-api';
 
 export default defineComponent({});
 </script>
