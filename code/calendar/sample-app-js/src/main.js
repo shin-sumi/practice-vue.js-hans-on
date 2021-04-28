@@ -5,6 +5,7 @@ import store from '@/store';
 import VueCompositionAPI from '@vue/composition-api';
 import vuetify from '@/plugins/vuetify';
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import '@mdi/font/css/materialdesignicons.css';
 
 Vue.use(VueCompositionAPI);
