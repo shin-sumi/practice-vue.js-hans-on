@@ -31,7 +31,7 @@
               v-for="(item, index) in items"
               :key="index"
               link
-              @click="handlemethod(item.methodName)"
+              @click="handleMethod(item.methodName)"
             >
               <v-list-item-icon>
                 <v-icon v-text="item.icon" />
