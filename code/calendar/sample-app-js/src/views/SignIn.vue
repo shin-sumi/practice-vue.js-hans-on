@@ -38,6 +38,7 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api';
+import { profileStore, profileMockData } from '@/store/profile';
 
 export default defineComponent({
   setup(prop, context) {
@@ -45,6 +46,7 @@ export default defineComponent({
      * サインイン
      */
     const signIn = () => {
+      profileStore.profile = profileMockData;
       context.root.$router.push('/');
     };
 
