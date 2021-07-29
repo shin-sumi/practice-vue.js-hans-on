@@ -117,7 +117,7 @@ export default defineComponent({
       // 新しいニックネーム
       newNickname: null,
       // 新しいテーマカラー
-      newThemeColor: profileStore.profile.newThemeColor,
+      newThemeColor: profileStore.profile.themeColor,
       // ユーザー名編集ダイアログをオープンするかどうかを示す値
       isOpenEditUserNameDialog: false,
       // ニックネーム編集ダイアログをオープンするかどうかを示す値
