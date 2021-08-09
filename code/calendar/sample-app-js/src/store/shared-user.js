@@ -57,3 +57,13 @@ export const update = (profile) => {
   targetUser.themeColor = profile.themeColor;
   targetUser.hasAvatar = profile.hasAvatar;
 };
+
+/**
+ * 指定したニックネームの一部に前方一致するユーザーを検索
+ * @param partOfNickname
+ */
+export const searchUsers = (partOfNickname) => {
+  return sharedUserStore.sharedUsers.filter((user) =>
+    user.nickname.startsWith(partOfNickname),
+  );
+};
