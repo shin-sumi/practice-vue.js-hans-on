@@ -523,6 +523,10 @@ export default defineComponent({
       },
       // イベントの変更内容を保存
       save: () => {
+        if (!state.newEvent.name) {
+          alert('タイトルは必須フィールドです。');
+          return false;
+        }
         const newEvent = state.newEvent;
 
         newEvent.start = !state.startTime
