@@ -69,7 +69,7 @@
           </v-toolbar>
           <v-card-text>
             <p class="mb-0" v-text="`開始: ${selectedEvent.start}`" />
-            <p v-text="formatedEndDateTime" />
+            <p v-text="formatEndDateTime" />
             <p :class="$style.memo" v-text="selectedEvent.memo" />
           </v-card-text>
         </v-card>
