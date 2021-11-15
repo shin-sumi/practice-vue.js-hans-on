@@ -411,7 +411,7 @@ export default defineComponent({
         state.calendar.next();
       },
       // イベントの色を取得
-      getEventColor: () => {
+      getEventColor: (event) => {
         if (!event) {
           return;
         }
@@ -477,7 +477,7 @@ export default defineComponent({
       },
       // 自分のイベントではないことを判定
       isNotOwner: (userId) => {
-        userId !== profileStore.profile.userId;
+        return userId !== profileStore.profile.userId;
       },
       // イベントの編集を開始
       startEditEvent: () => {
