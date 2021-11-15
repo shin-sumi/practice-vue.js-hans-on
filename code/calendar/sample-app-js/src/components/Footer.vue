@@ -20,7 +20,7 @@
       <v-menu top open-on-hover offset-y>
         <template v-slot:activator="{ on }">
           <div :class="$style.profile" class="py-1 px-1 text-center" v-on="on">
-            <v-avatar :class="signInUser.themeColor">
+            <v-avatar :color="signInUser.themeColor">
               <span class="white--text body-2" v-text="signInUser.nickname" />
             </v-avatar>
           </div>
