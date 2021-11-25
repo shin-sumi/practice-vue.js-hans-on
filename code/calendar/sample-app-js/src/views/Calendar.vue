@@ -558,7 +558,7 @@ export default defineComponent({
       },
       // イベント開始時刻選択ダイアログを閉じる
       closeStartTimePicker: () => {
-        state.isOpenStartDatePicker = false;
+        state.isOpenStartTimePicker = false;
       },
       // イベント終了日付の値をクリア
       clearEndDate: () => {
@@ -576,7 +576,7 @@ export default defineComponent({
       },
       // イベント終了時刻選択ダイアログを閉じる
       closeEndTimePicker: () => {
-        state.isOpenEndDatePicker = false;
+        state.isOpenEndTimePicker = false;
       },
       // イベント登録/編集ダイアログを閉じる
       closeEventDialog: () => {
